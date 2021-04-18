@@ -1,0 +1,92 @@
+Sentiment analysis (also known as opinion mining or emotion AI) refers to the use of 
+natural language processing, text analysis, computational tasks to systematically
+identify, extract, quantify, and study affective states and subjective information.
+
+application
+1.Sentiment analysis is used for customer feedback available (online reviews, social media, surveys) 
+ and save hundreds of employee hours.
+2.monitor your  competitor social media
+3.politics -in poslitical field it is used to keep track of political views
+ to detect consistency and inconsistency between statements and actions at the
+ government level . it can be used to predict election result as well
+
+
+We follow these 3 major steps in our program:
+Authorize twitter API client.
+Make a GET request to Twitter API to fetch tweets for a particular query.
+Parse the tweets. Classify each tweet as positive, negative or neutral.
+
+
+First off, we need to visit the Twitter Developer website and log into our account and then create 
+twitter developer account	
+Since we now have our Twitter Developers login credentials (i.e. API keys and Access token), 
+we can proceed to authenticating our program
+
+
+textblob-it is a Python (2 and 3) library for processing textual data. It provides a simple API for diving into 
+         common natural language processing (NLP) tasks such as part-of-speech tagging, noun phrase extraction,
+  	 sentiment analysis, classification, translation
+sys-The sys module provides information about constants, functions and methods of the Python interpreter.
+	 dir(system) gives a summary of the available constants, functions and methods.
+tweepy-Tweepy is an open source Python package that gives you a very convenient way to access the Twitter API with Python.
+	 Tweepy includes a set of classes and methods that represent Twitter's models and API endpoints, and it transparently 
+	handles various implementation details, such as: Data encoding and decoding.
+matplotlib-Matplotlib is a plotting library for the Python programming language and its numerical mathematics extension NumPy. 
+            it is used to show the percentage of postive neggative and neutral tweets
+
+percentage function is used to calculate the percenage of +ve -ve and neutral tweets
+
+
+tweepy supports OAuth authentication. Authentication is handled by the tweepy.OAuthHandler class.
+An OAuthHandler instance must be created by passing a consumer token and secret.
+On this auth instance, we will call a function set_access_token by passing the access_token and access_token_secret.
+Finally, we create our tweepy API instance by passing this auth instance into the API function of tweepy.
+We can now search Twitter for any topic using the search method of the API.
+api is application program interface
+these three will establish a connection with api
+
+tweets will contain all the tweets related to the keyword we entered
+we use a for loop to analyze a tweet
+polarity will be the average result of all the tweets
+
+
+we can also print tweet using print(tweet.text)
+
+we pass tweet to create a TextBlob object, following processing is done over text by textblob library:
+Tokenize the tweet ,i.e split words from body of text. Remove stopwords from the tokens
+
+
+to print pichart we will create a label and label will be +ve -ve and neutral
+next we need to define size and then colors
+
+
+
+
+Data Collection
+Consumers usually express their sentiments on public forums like the blogs,
+discussion boards, product reviews as well as on their private logs –
+ Social network sites like Facebook and Twitter.Opinions and feelings 
+are expressed in different way, with different vocabulary, context of 
+writing, making the data huge and disorganized.
+Text Preparation
+Text preparation is nothing but filtering the extracted data before analysis.It includes identifying and
+ eliminating non-textual content and content thatis irrelevant to the area of study from the data.
+sentiment Detection
+At this stage, each sentence of the review and opinion is examined for subjectivity.Sentiment analysis is 
+done at different levels usingcommon computational techniques like Unigrams, lemmas, negation and so on.
+Sentiment Classification
+Sentiments can be broadly classified into three groups, positive negative neutral.At this stage of sentiment 
+analysis methodology, each subjective sentence detected is classified into groups-positive, negative, good, bad,
+ like, dislike.
+Presentation of Output
+The main idea of sentiment analysis is to convert unstructured text into meaningful information.
+After the completion of analysis, the text results are displayed on graphs like pie chart,bar chart and line graphs.
+
+
+
+API key:nQdIUHs8JOeg7T41A8fg5KeqD
+API secret key:DSb9sdP3Q3QR0A4L7gE00C2riq2CnVllSowe22pnrWVumAv9uw
+Bearer Token:AAAAAAAAAAAAAAAAAAAAAOr5KQEAAAAA9czSfw06IwEMjjJ01pdIueMFBEo%3DcXB7WdWwZrMR90L8IuP682Fg01dvO6FJXXcBKxFguqWUiXxbrD
+Access token:1261175650339246081-qdg9h6pjwOMaJtoMl83kk8jRVKh9zT
+Access token secret:	QE2vcPEwHFWFggrYJh0ufRY7VNeUu7WakwpfIxwTm7ijo
+

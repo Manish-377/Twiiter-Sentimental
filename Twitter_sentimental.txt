@@ -1,0 +1,66 @@
+from textblob import TextBlob
+import sys,tweepy
+import matplotlib.pyplot as plt
+
+def percentage(part,whole):
+    return 100*float(part)/float(whole)
+
+accessToken="1261175650339246081-qdg9h6pjwOMaJtoMl83kk8jRVKh9zT"
+accessTokenSecret="QE2vcPEwHFWFggrYJh0ufRY7VNeUu7WakwpfIxwTm7ijo"
+consumerKey="nQdIUHs8JOeg7T41A8fg5KeqD"
+consumerSecret="DSb9sdP3Q3QR0A4L7gE00C2riq2CnVllSowe22pnrWVumAv9uw"
+
+auth=tweepy.OAuthHandler(consumerKey,consumerSecret)
+auth.set_access_token(accessToken,accessTokenSecret)
+api=tweepy.API(auth)
+
+searchTerm = input("Enter keyword/hashtag to search about: ")
+NoOfSearchTerms=int(input("Enter how many tweets to analyze: "))
+
+tweets = tweepy.Cursor(api.search,q=searchTerm).items(NoOfSearchTerms)
+
+positive = 0
+negative= 0 
+neutral=0
+polarity=0
+
+for tweet in tweets:
+    #print(tweet.text)
+    analysis=TextBlob(tweet.text)
+    polarity+=analysis.sentiment.polarity
+    
+    if(analysis.sentiment.polarity==0):
+        neutral+=1
+        
+    elif(analysis.sentiment.polarity<0.00):
+        negative+=1
+        
+    elif(analysis.sentiment.polarity>0.00):
+        positive+=1
+        
+positive=percentage(positive,NoOfSearchTerms)
+negative=percentage(negative,NoOfSearchTerms)
+neutral=percentage(neutral,NoOfSearchTerms)
+
+positive = format(positive,'.2f')
+negative = format(negative,'.2f')
+neutral = format(neutral,'.2f')
+
+print("How people are reacting on "+ searchTerm +" By analysing "+str(NoOfSearchTerms) + " Tweets")
+
+if(polarity ==0):
+    print("Neutral")
+elif(polarity<0):
+    print("Negative")
+elif(polarity>0):
+    print("Positive")
+    
+labels = ['Positive ['+str(positive)+'%]', 'Neutral ['+str(neutral)+'%]', 'Negative ['+str(negative)+'%]',]
+sizes=[positive,neutral,negative]
+colors=['yellow','red','green']
+patches,texts =plt.pie(sizes,colors=colors,startangle=90)
+plt.legend(patches,labels,loc="best")
+plt.title("How people are reacting on "+ searchTerm +" By analysing "+str(NoOfSearchTerms) + " Tweets")
+plt.axis('equal')
+plt.tight_layout()
+plt.show()
